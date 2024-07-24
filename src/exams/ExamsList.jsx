@@ -6,6 +6,8 @@ function ExamsList() {
   async function deleteExam(id) {
     const url = `http://192.168.0.89:8070/api/v1/exams/${id}`;
 
+    const confirmation = window.confirm('Are you sure you want to delete this item?')
+    if (confirmation){
     try {
       const response = await fetch(url, {
         method: "DELETE",
@@ -22,7 +24,7 @@ function ExamsList() {
     } catch (error) {
       console.error("Fetch error", error);
     }
-  }
+  }}
 
   async function fetchData() {
     try {
@@ -33,8 +35,8 @@ function ExamsList() {
       const body = await response.json();
       setExam(body);
     } catch (error) {
-      console.error("Error creating new medicine", error);
-      alert("An error ocurred while adding the medicine. Please try again");
+      console.error("Error getting the exams", error);
+      alert("An error ocurred while getting the exams. Please try again");
     }
   }
 
